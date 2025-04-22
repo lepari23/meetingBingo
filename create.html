@@ -1,0 +1,18 @@
+<h1>Create or Edit a Word List</h1>
+
+<input type="text" id="newListName" placeholder="List Name">
+<br>
+<br>
+<input type="text" id="wordInput" placeholder="Enter Word or Phrase">
+<button onclick="addWord()">Add Word</button>
+<ul id="wordList"></ul>
+
+<button onclick="saveNewList()">Save List</button>
+<button onclick="clearInputs()">Clear Current Inputs</button>
+
+<h2>Saved Lists</h2>
+<div id="savedLists"></div>
+<br>
+<button onclick="window.location.href='index.html'">Back to Main Menu</button>
+
+<script src="js/create.js"></script>

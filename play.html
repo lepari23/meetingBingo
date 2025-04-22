@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Play MeetingBingo</title>
+    <!-- fix above -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <h1>Buzzword Bingo</h1>
+    <div id="bingoBoard"></div>
+    <div id="victoryOverlay" class="hidden">
+        <img src="images/victory.gif" alt="Victory!" id="victoryGif">
+        <h2>Congratulations! You got Bingo!</h2>
+        <button onclick="closeVictory()">Okay</button>
+        <button onclick="window.location.href='index.html'">Back to Home</button>
+    </div>
+
+    <button onclick="resetBoard()">Reset Board</button>
+    <button onclick="newBoard()">New Board</button>
+    <button onclick="window.location.href='index.html'">Back to Home</button>
+
+    <script src="js/bingo.js"></script>
+    <script src="js/play.js"></script>
+</body>
+</html>
