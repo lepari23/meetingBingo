@@ -9,7 +9,20 @@
 
 <button onclick="saveNewList()">Save List</button>
 <button onclick="clearInputs()">Clear Current Inputs</button>
+<br>
+<h3>Import / Export custom lists</h3>
 
+<!-- Download selector -->
+<select id="downloadSelect">
+  <option value="" disabled selected>Select custom list to download</option>
+</select>
+<button onclick="downloadList()">Download JSON</button>
+<br><br>
+
+<!-- Upload -->
+<input type="file" id="uploadFile" accept=".json" style="display:none">
+<button onclick="document.getElementById('uploadFile').click()">Upload JSON</button>
+<hr>
 <h2>Saved Lists</h2>
 <div id="savedLists"></div>
 <br>

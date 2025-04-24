@@ -2,26 +2,31 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>MeetingBingo</title>
-  <!-- fix above -->
+    <title>Buzzword Bingo</title>
 
     <link rel="stylesheet" href="css/style.css">
 </head>
+<!-- well hello there! what brings you to my source? -->
 <body>
-    <h1>Welcome to MeetingBingo</h1>
+    <h1>Welcome to Buzzword Bingo</h1>
     <br>
     <button onclick="window.location.href='create.html'">Manage your Custom Word Lists</button>
-
     <h2>Play a Game</h2>
+    <p>Select board size:</p>
     <select id="boardSize">
-      <option value="" disabled selected>Select Board size</option>
-      <option value="3">3x3</option>
+      <option value="3" selected>3×3 (default)</option>
       <option value="4">4x4</option>
       <option value="5">5x5</option>
       <option value="6">6x6</option>
       <option value="7">7x7</option>
     </select>
-    <br><br>
+    <br>
+    <div id="bonusWrapper" style="display: none;">
+      <input type="checkbox" id="bonusSquare" name="bonusSquare" value="false">
+      <label for="bonusSquare">Include Bonus Square</label>
+    </div>
+    <br>
+    <div id="customListButtons"></div>
     <button onclick="startGame('tech')">Tech Bingo</button>
     <br><br>
     <button onclick="startGame('management')">Management Bingo</button>
@@ -30,11 +35,10 @@
     <br><br>
     <button onclick="startGame('wine')">Wine Tasting Bingo</button>
     <br><br>
-    <!-- add custom lists here, using list name + bingo for button title; also think about size limits, if only 9 items then can only do 3x3, etc -->
     <script src="js/bingo.js"></script>
     <script src="js/storage.js"></script>
     <script src="js/index.js"></script>
-<footer>
+  <footer>
     <p class="wisdom">
       The identity of Bingo is formally ambiguous, and it is occasionally suggested that it is the name of the farmer.
     </p>

@@ -32,10 +32,10 @@ const presetLists = {
         "strategy session", "dropped the ball", "data-driven", "put a pin in it", "teambuilding",
         "work-life balance", "move the needle", "track record", "stakeholders", "industry leaders",
         "scale", "surge", "standup meeting", "quiet quitting", "blue sky thinking",
-        "grassroots movement", "get our ducks in a row", "trim the fat", "jump the shark", "herding cats",
+        "grassroots", "get our ducks in a row", "trim the fat", "jump the shark", "herding cats",
         "employee experience", "what's best for the company", "think practically", "be mature", "think pragmatically",
         "accommodating", "find alternatives", "drill down", "streamline", "value-add",
-        "I fucking hate developers", "high-priority", "work hard, play hard"
+        "I fucking hate developers", "high-priority", "work hard, play hard", "greener grass", "corporate"
     ],
     marketing: [
         "AI marketing", "SEO", "content strategy", "viral", "ROI",
@@ -45,7 +45,7 @@ const presetLists = {
         "story points", "ping the team", "cloud solutions", "millennials", "Gen Z",
         "Boomers", "data-driven marketing", "social proof", "clickbait", "influencer",
         "organic reach", "brand awareness", "thought leadership", "customer journey", "brand voice",
-        "what is development? like brand development? I'm good at that! Whats a software :0"
+        "what is development? like brand development? I'm good at that! Whats a software :0", "TikTok"
     ],
     wine: [
         "Oaky", "vertical", "cellar-floor", "pencil shavings", "organic",
@@ -53,6 +53,6 @@ const presetLists = {
         "natural fermentation", "x oldest farm in y location", "old vines", "italian style",
         "wonderful legs", "salmon colour", "pairs well with cheeses", "perfect for a curry", "subtle berry flavours",
         "great value", "multiple award winning", "actually our winemakers favorite", "actually my favorite", "pairs nicely a seafood dish",
-        "unnecessarily long story trying to justify their label's graphics", "this makes a great Katemba (if anyone not playing says this at a tasting you just auto win, holy shit)"
+        "unnecessarily long story trying to justify their label's graphics", "this would make a great Katemba (if anyone not playing says this at a tasting you just auto win, holy shit)"
     ]
 };

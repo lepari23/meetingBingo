@@ -2,6 +2,7 @@ Best to use py to test localStorage:
 `python3 -m http.server 5500`
 
 dir structure explained:
+```
 /meetingbingo
 ├── index.html        <-- landing + game page
 ├── create.html       <-- custom word list entry page
@@ -12,6 +13,12 @@ dir structure explained:
 │   ├── storage.js    <-- saving/loading custom lists
 │   └── create.js     <-- handling word entry page
 └── README.md         <-- repo instructions + credits
+```
+
+To test detectWin algo, you can use the following, add more tests or modify the algo if you want, its all super basic:
+```
+node js/detectWin.test.js
+```
 
 | Rule | Notes |
 |---|---|
@@ -23,6 +30,7 @@ dir structure explained:
 | Multiple Bingos | You can get 2+ Bingos at once, rare but cool |
 | Word Repeat | Never repeat the same word on one board |
 | Traditional | Numbers (B-I-N-G-O columns) - but this version includes phrases! |
+
 
 
 Okay like, 5x5 will have a free tile.

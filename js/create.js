@@ -32,6 +32,7 @@ function saveNewList() {
     } else {
         alert('Please add at least 9 words for a playable list');
     }
+    refreshDownloadSelect();
 }
 
 function clearInputs() {
@@ -111,6 +112,72 @@ function deleteList(listName) {
         localStorage.removeItem(listName);
         listSavedLists(); // Refresh list display
     }
+    refreshDownloadSelect();
 }
 
+function refreshDownloadSelect() {
+    const builtIn = ["tech", "management", "marketing", "wine"];
+    const dlSel = document.getElementById("downloadSelect");
+    if (!dlSel) return;
+
+    dlSel.innerHTML =
+        '<option value="" disabled selected>Select custom list to download</option>';
+
+    for (let i = 0; i < localStorage.length; i++) {
+        const k = localStorage.key(i);
+        if (!builtIn.includes(k)) {
+            const opt = document.createElement("option");
+            opt.value = k;
+            opt.text = k;
+            dlSel.appendChild(opt);
+        }
+    }
+}
+
+function downloadList() {
+    const key = document.getElementById("downloadSelect").value;
+    if (!key) { alert("Choose a list first."); return; }
+    const data = localStorage.getItem(key);
+    if (!data) { alert("List not found."); return; }
+
+    const blob = new Blob([data], { type: "application/json" });
+    const url = URL.createObjectURL(blob);
+
+    const a = document.createElement("a");
+    a.href = url; a.download = `${key}.json`;
+    document.body.appendChild(a); a.click(); a.remove();
+    URL.revokeObjectURL(url);
+}
+
+document.getElementById("uploadFile").addEventListener("change", evt => {
+    const file = evt.target.files[0];
+    if (!file) return;
+
+    const reader = new FileReader();
+    reader.onload = () => {
+        try {
+            const words = JSON.parse(reader.result);
+            if (!Array.isArray(words) || words.some(w => typeof w !== "string")) {
+                alert("JSON must be an array of strings."); return;
+            }
+
+            // default key = filename (no .json), make unique
+            let key = file.name.replace(/\.json$/i, "");
+            let n = 1;
+            while (localStorage.getItem(key)) key = `${file.name.replace(/\.json$/i, "")}_${n++}`;
+
+            localStorage.setItem(key, JSON.stringify(words));
+            alert(`List "${key}" imported (${words.length} items).`);
+
+            listSavedLists();       // refresh left pane
+            refreshDownloadSelect();// refresh download selector
+        } catch (e) {
+            alert("Invalid JSON file.");
+        }
+    };
+    reader.readAsText(file);
+    evt.target.value = "";          // allow same file again later
+});
+
 listSavedLists();
+refreshDownloadSelect(); 
