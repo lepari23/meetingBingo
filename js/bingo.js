@@ -3,7 +3,7 @@ const presetLists = {
     tech: [
         "cloud-native", "scalability", "agile", "devops", "serverless",
         "microservices", "blockchain", "AI-driven", "big data", "containerization",
-        "machine learning", "disruption", "IoT", "5G", "low-code",
+        "machine learning", "disruption", "IoT", "bandwidth", "low-code",
         "modular", "clean code", "ChatGPT", "trivial", "regression testing",
         "algorithm", "bug", "full-stack", "mobile-first", "MVP",
         "SQL", "Linux", "pull request", "wireframe", "API",
@@ -13,8 +13,8 @@ const presetLists = {
         "code review", "database", "deploy", "production", "framework",
         "inheritance", "JSON", "MVC", "object-oriented programming", "open source",
         "operating system", "RESTful", "runtime", "compile", "script",
-        "source code", "sprint", "syntax", "lint", "user interface (UI)",
-        "user experience (UX)", "version control / git", "web3", "cache", "breakpoint",
+        "source code", "sprint", "syntax", "lint", "user interface / UI",
+        "user experience / UX", "version control / git", "web3", "cache", "breakpoint",
         "CI/CD", "cookies", "DOM", "SaaS", "product owner",
         "story points", "ping", "latency", "NoSQL", "edge computing",
         "LGTM", "I just work here", "see what you can find"

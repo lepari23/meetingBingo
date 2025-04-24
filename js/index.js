@@ -1,4 +1,4 @@
 function startGame(listName) {
-    localStorage.setItem('selectedPreset', listName);
-    window.location.href = 'play.html';
+    const size = document.getElementById('boardSize').value;
+    window.location.href = `play.html?preset=${encodeURIComponent(listName)}&size=${size}`;
 }
