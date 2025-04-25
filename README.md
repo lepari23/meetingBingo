@@ -1,12 +1,39 @@
-Best to use py to test localStorage:
-`python3 -m http.server 5500`
+# Buzzword Bingo (not for meetings)
 
-dir structure explained:
+A basic, private browser bingo for adding a secret edge (of mild bemusement) to meetings, stand-ups, wine tastings, birthday parties, family dinners, chats with estate agents... doing taxes? Uhh Idk anymore... Just give it a try yes? 🙂
+
+No servers, no tracking — everything runs 100% client-side.
+
+## Live demo
+
+**<https://lepari23.github.io/meetingbingo>**
+
+
+## Quick start (dev)
+
+```bash
+git clone https://github.com/lepari23/meetingbingo.git
+cd meetingbingo
+python3 -m http.server 5500
+```
+Then open <http://localhost:5500> in your browser.
+
+## What you can do
+
+|Feature| Where |
+|--|--|
+|Play built-in lists (Tech / Management / Marketing / Wine) | js/presetLists.js|
+|Create / edit your own lists | Manage custom word lists button|
+|Import / export lists (JSON) | same page|
+|Test your own solutions to detectWin| Idk, maybe try the file called detectWin.test.js?...Why am I even writing this |
+
+
+## 📂 Project structure:
 ```
 /meetingbingo
 .
-├── LICENSE
-├── README.md
+├── LICENSE                     <-- open source but like, be cool about it
+├── README.md                   <-- no clue what this is
 ├── css
 │   └── style.css
 ├── images
@@ -15,51 +42,31 @@ dir structure explained:
 ├── js
 │   ├── presetLists.js          <-- default bingo lists
 │   ├── create.js               <-- manage, upload, download lists
-│   ├── detectWin.test.js       <-- basic testing of the logic for detecting wins
-│   ├── index.js
-│   └── play.js                 <-- main game logic
+│   ├── detectWin.test.js       <-- basic tests for win detection
+│   ├── index.js                <-- this is where the magic happens, well no but...
+│   └── play.js                 <-- game logic
 ├── index.html                  <-- landing page & main menu
 ├── create.html                 <-- manage customs lists
-├── todo.md                                                 <-- delete me
 └── play.html                   <-- game page
-
-
-├── index.html        <-- landing + game page
-├── create.html       <-- custom word list entry page
-├── css/
-│   └── style.css     <-- shared styling
-├── js/
-│   ├── bingo.js      <-- board generator + logic
-│   ├── storage.js    <-- saving/loading custom lists
-│   └── create.js     <-- handling word entry page
-└── README.md         <-- repo instructions + credits
 ```
 
-To test detectWin algo, you can use the following, add more tests or modify the algo if you want, its all super basic:
-```
-node js/detectWin.test.js
-```
+## Contributing
 
-| Rule | Notes |
-|---|---|
-| Classic size | 5x5 grid (24 words + "Free" center tile) |
-| Minimum "words" | 9 for 3x3, 16 for 4x4, 24 for 5x5 |
-| Win Conditions | Complete any horizontal, vertical, or diagonal line |
-| Center Tile | Often a Free Space in 5x5 boards (optional for you) |
-| Randomization | Cards shuffle word placement every time |
-| Multiple Bingos | You can get 2+ Bingos at once, rare but cool |
-| Word Repeat | Never repeat the same word on one board |
-| Traditional | Numbers (B-I-N-G-O columns) - but this version includes phrases! |
+Got a killer buzzword or new category idea?
+PRs to add witty, high-quality entries to presetLists.js are welcome.
+Please try to keep each list fun but sensible — no generic filler please.
 
+Found a bug? Got an idea?
+👉 Open an issue!
 
+## ⚠️ Disclaimer
 
-Okay like, 5x5 will have a free tile.
-Im not gonna tell you how to play.
-Im not gonna give you a little textbox to write down all the buzzwords called.
-Im not gonna punish you if you cheat, thats on you, if it makes you happy and feel smart, I can't stop you, do what you want, loser.
-You can interpret things how you want, just be consistent if you're playing with others.
-Also don't be an asshole to wait-staff, idc about your shitty HR or management.
-I take no responsibility if you are caught playing this and there are professional or even legal ramifications, or if you can't take a joke. Just like, get fukt, not my problem, do better in life, not my fault.
+This project is intended for entertainment only.
+The author accepts no responsibility for:
+* HR emails
+* Legal or financial damages
+* Managerial glare
+* Existential crises
+* Accidental enlightenment
 
-Also
-The identity of Bingo is formally ambiguous, and it is occasionally suggested that it is the name of the farmer.
+Use Buzzword Bingo responsibly. Or don’t. I’m not your boss.
