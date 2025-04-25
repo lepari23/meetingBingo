@@ -4,6 +4,26 @@ Best to use py to test localStorage:
 dir structure explained:
 ```
 /meetingbingo
+.
+├── LICENSE
+├── README.md
+├── css
+│   └── style.css
+├── images
+│   ├── favicon.png
+│   └── victory.gif
+├── js
+│   ├── presetLists.js          <-- default bingo lists
+│   ├── create.js               <-- manage, upload, download lists
+│   ├── detectWin.test.js       <-- basic testing of the logic for detecting wins
+│   ├── index.js
+│   └── play.js                 <-- main game logic
+├── index.html                  <-- landing page & main menu
+├── create.html                 <-- manage customs lists
+├── todo.md                                                 <-- delete me
+└── play.html                   <-- game page
+
+
 ├── index.html        <-- landing + game page
 ├── create.html       <-- custom word list entry page
 ├── css/

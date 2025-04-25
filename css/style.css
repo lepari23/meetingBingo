@@ -1,65 +1,114 @@
-td span {
-    display: inline-block; /* treat it as a block inside the cell */
-    width: 100%;
+/* ============================================================
+   BUZZWORD BINGO – GLOBAL LAYOUT
+   ============================================================ */
+
+:root{
+    --c-primary:#1976d2;
+    --c-primary-dark:#1257a8;
+    --c-text-light:#fff;
+    --c-text-dim:#666;
+    --c-card:#fafafa;
+    --c-border:#ddd;
+    --radius:8px;
 }
 
-.struck {
-    text-decoration: line-through;
-    color: gray;
-    opacity: 0.7;
+*{box-sizing:border-box;font-family:system-ui,Arial,sans-serif}
+
+html,body{margin:0;height:100%}
+body     {display:flex;flex-direction:column;min-height:100vh}
+
+/* ---------- MAIN / FOOTER ----------------------------------- */
+main     {flex:1;display:flex;flex-direction:column;align-items:center;
+          padding:1.5rem 1rem;gap:1.3rem}
+footer   {text-align:center;padding:1rem 0;font-size:.8rem;color:var(--c-text-dim)}
+p.wisdom {font-family:"Comic Sans MS","Comic Sans",cursive;opacity:.7;margin:0}
+
+/* ============================================================
+   SHARED UI ELEMENTS
+   ============================================================ */
+
+button{
+  display:inline-block;
+  width:100%;max-width:260px;
+  padding:.55rem 0;
+  border:none;border-radius:var(--radius);
+  background:var(--c-primary);color:var(--c-text-light);
+  cursor:pointer;font-size:.95rem
+}
+button:hover{background:var(--c-primary-dark)}
+
+.action-btn{margin-top:.45rem}             /* tweak spacing when needed */
+.bingo-btn {}                              /* identical to generic button */
+#customListButtons .bingo-btn{
+  background:#555
+}
+#customListButtons .bingo-btn:hover{
+  background:#333
+}
+.btn-grid{display:flex;flex-direction:column;gap:.45rem;align-items:center}
+
+/* ---------- Card / Panel ------------------------------------ */
+.card{
+  border:1px solid var(--c-border);border-radius:var(--radius);
+  background:var(--c-card);padding:1.3rem;width:100%;max-width:380px;
+  text-align:center
 }
 
-table {
-    border-collapse: collapse;
-    border: 2px solid black;
-    margin: 20px auto;
+/* ---------- Accordion (index) ------------------------------- */
+#howItWorks{
+  composes: card;
+  max-width:680px;line-height:1.45
 }
+#howItWorks summary{cursor:pointer;font-size:1.05rem}
 
-td {
-    border: 2px solid black;
-    width: 100px;
-    height: 100px;
-    text-align: center;
-    vertical-align: middle;
-    font-size: 16px;
-    cursor: pointer;
-    user-select: none;
+/* ============================================================
+   MODAL (disclaimer) – visible on every page but hidden later
+   ============================================================ */
+.modal{
+  position:fixed;inset:0;display:flex;align-items:center;justify-content:center;
+  background:rgba(0,0,0,.65);z-index:1000
 }
+.modal-box{
+  background:#fff;max-width:480px;padding:1.6rem 1.8rem;
+  border-radius:var(--radius);
+  box-shadow:0 4px 12px rgba(0,0,0,.25)
+}
+.btn-row{display:flex;justify-content:flex-end;gap:.6rem;margin-top:1.2rem}
+.flat-btn{border:none;padding:.45rem .9rem;border-radius:var(--radius);cursor:pointer}
+.flat-btn.primary{background:var(--c-primary);color:var(--c-text-light)}
+/* ============================================================
+   PLAY PAGE   (play.html)
+   ============================================================ */
+.play-wrapper{
+  composes: main;
+  gap:1.2rem
+}
+#bingoBoard table{border-collapse:collapse;margin:20px auto}
+#bingoBoard td{
+  width:96px;height:96px;border:2px solid #000;text-align:center;
+  vertical-align:middle;cursor:pointer;user-select:none
+}
+#bingoBoard td span{display:inline-block;width:100%}
+.struck{text-decoration:line-through;color:#666;opacity:.7}
 
-p.wisdom {
-    font-size: 12px;
-    font-family: "Comic Sans MS", "Comic Sans", cursive;
-    text-align: center;
-    margin-top: 50px;
-    opacity: 0.7;
+/* -- fullscreen victory overlay -- */
+#victoryOverlay{
+  position:fixed;inset:0;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;gap:1rem;
+  background:rgba(0,0,0,.8);color:#fff;text-align:center;z-index:9999
 }
+#victoryOverlay.hidden{display:none}
+#victoryOverlay img{width:260px;max-width:80%;height:auto}
 
-footer {
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-    text-align: center;
+/* ============================================================
+   CREATE PAGE  (create.html)
+   ============================================================ */
+.create-wrapper{composes: main;max-width:620px;margin:auto;gap:1.1rem}
+.create-columns{
+  display:grid;grid-template-columns:1fr 1fr;gap:1.2rem;width:100%
 }
-
-#victoryOverlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0,0,0,0.8);
-  color: white;
-  text-align: center;
-  padding-top: 100px;
-  z-index: 9999;
-  display: none;
+.saved-box{
+  border:1px solid var(--c-border);border-radius:var(--radius);background:var(--c-card);
+  padding:1rem;max-height:460px;overflow:auto
 }
-
-#victoryOverlay img {
-  width: 300px;
-  height: auto;
-}
-
-.hidden {
-  display: none;
-}
+.saved-box button{margin-left:.5rem}

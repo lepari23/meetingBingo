@@ -1,87 +1,85 @@
-document.addEventListener("DOMContentLoaded", function () {
-    const allowed = ["3", "5", "7"];
-    const boardSizeSelect = document.getElementById('boardSize');
-    const bonusWrapper = document.getElementById('bonusWrapper');
-    const bonusCheckbox = document.getElementById('bonusSquare');
-    const customListContainer = document.getElementById('customListButtons');
+const RESERVED_KEYS = ["meetingBingoDisclaimerAccepted"];
+const BUILT_INS = Object.keys(presetLists);
 
-    // Show/hide bonus checkbox
-    boardSizeSelect.addEventListener('change', function () {
-        const selected = this.value;
+document.addEventListener("DOMContentLoaded", () => {
+    /* ────────────── disclaimer ────────────── */
+    const consentKey = RESERVED_KEYS[0];
+    const modal = document.getElementById("disclaimerModal");
 
-        if (allowed.includes(selected)) {
-            bonusWrapper.style.display = "block";
-        } else {
-            bonusWrapper.style.display = "none";
-            bonusCheckbox.checked = false;
-        }
+    if (localStorage.getItem(consentKey) === "true") {
+        modal.style.display = "none";
+    } else {
+        document.getElementById("acceptBtn").onclick = () => {
+            localStorage.setItem(consentKey, "true");
+            modal.style.display = "none";
+        };
+        document.getElementById("declineBtn").onclick = () => {
+            location.href = "https://zoomquilt.org";
+        };
+    }
+
+    /* ────────────── setup UI ────────────── */
+    const boardSizeSel = document.getElementById("boardSize");
+    const bonusWrap = document.getElementById("bonusWrapper");
+    const bonusCheckbox = document.getElementById("bonusSquare");
+    const presetGrid = document.getElementById("presetButtons");
+    const customGrid = document.getElementById("customListButtons");
+
+    boardSizeSel.addEventListener("change", () => {
+        const show = ["3", "5", "7"].includes(boardSizeSel.value);
+        bonusWrap.style.visibility = show ? "visible" : "hidden";
+        if (!show) bonusCheckbox.checked = false;
     });
+    boardSizeSel.dispatchEvent(new Event("change"));
 
-    // Force run on load
-    boardSizeSelect.dispatchEvent(new Event('change'));
+    BUILT_INS.forEach(key =>
+        presetGrid.appendChild(makeBtn(`${cap(key)} Bingo`, () => startGame(key)))
+    );
 
-    // Add custom list buttons
-    const builtIn = ["tech", "management", "marketing", "wine"];
+    let firstCustom = true;
     for (let i = 0; i < localStorage.length; i++) {
         const key = localStorage.key(i);
-        if (!builtIn.includes(key)) {
-            const btn = document.createElement("button");
-            btn.textContent = `${key} Bingo`;
-            btn.onclick = () => startGame(key);
-            customListContainer.appendChild(btn);
-            customListContainer.appendChild(document.createElement("br"));
-            customListContainer.appendChild(document.createElement("br"));
+        if (isUserListKey(key)) {
+            if (firstCustom) {
+                customGrid.appendChild(document.createElement("br"));
+                firstCustom = false;
+            }
+            customGrid.appendChild(makeBtn(`${key} Bingo`, () => startGame(key), true));
         }
     }
 });
 
-function startGame(listName) {
-    const sizeValue = document.getElementById("boardSize").value;
-    if (!sizeValue) {
-        alert("Pick a board size first 🙂");
-        return;
-    }
+/* ------------------------------------------------------------------ */
+/*  utility helpers                                                   */
+/* ------------------------------------------------------------------ */
+function cap(str) { return str.charAt(0).toUpperCase() + str.slice(1); }
 
-    const size = parseInt(sizeValue, 10);
-    const bonus = document.getElementById("bonusSquare").checked;
-    const need = size * size - (bonus ? 1 : 0);           // centre “free” costs 1
-
-    const builtIn = ["tech", "management", "marketing", "wine"];
-    let words = [];
-
-    if (builtIn.includes(listName)) {
-        words = presetLists[listName];
-    } else {
-        const stored = localStorage.getItem(listName);
-        if (stored) words = JSON.parse(stored);
-    }
-
-    if (words.length < need) {
-        alert(
-            `"${listName}" only has ${words.length} items.\n` +
-            `Need at least ${need} for a ${size}×${size} board` +
-            (bonus ? " with a bonus square." : ".")
-        );
-        return;
-    }
-
-    const bonusParam = bonus ? "true" : "false";
-    window.location.href =
-        `play.html?preset=${encodeURIComponent(listName)}&size=${size}&bonus=${bonusParam}`;
+function makeBtn(label, onclickFn, isCustom = false) {
+    const btn = document.createElement("button");
+    btn.className = "bingo-btn" + (isCustom ? " custom" : "");
+    btn.textContent = label;
+    btn.onclick = onclickFn;
+    return btn;
 }
 
-// ---------- populate <select> with custom (non-built-in) bingo lists -------------
-document.addEventListener("DOMContentLoaded", () => {
-    const builtIn = ["tech", "management", "marketing", "wine"];
-    const dlSel = document.getElementById("downloadSelect");
+function isUserListKey(key) {
+    return !RESERVED_KEYS.includes(key) && !BUILT_INS.includes(key);
+}
 
-    for (let i = 0; i < localStorage.length; i++) {
-        const key = localStorage.key(i);
-        if (!builtIn.includes(key)) {
-            const opt = document.createElement("option");
-            opt.value = key;
-            opt.text = key;
-            dlSel.appendChild(opt);
-        }
+/* ------------------------------------------------------------------ */
+/*  startGame logic                                                   */
+/* ------------------------------------------------------------------ */
+function startGame(listName) {
+    const size = +document.getElementById("boardSize").value;
+    const bonus = document.getElementById("bonusSquare").checked;
+
+    const words = presetLists[listName] ?? JSON.parse(localStorage.getItem(listName) || "[]");
+    const need = size * size - (bonus ? 1 : 0);
+
+    if (words.length < need) {
+        alert(`"${listName}" has only ${words.length} items; need ${need} for a ${size}x${size}.`);
+        return;
     }
-});
+
+    location.href = `play.html?preset=${encodeURIComponent(listName)}&size=${size}&bonus=${bonus}`;
+}

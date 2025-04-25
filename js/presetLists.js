@@ -1,4 +1,4 @@
-// Pre-made word lists
+// Pre-made word lists, make a PR if you have any suggestions
 const presetLists = {
     tech: [
         "cloud-native", "scalability", "agile", "devops", "serverless",

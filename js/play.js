@@ -88,12 +88,11 @@ function detectWin(state = boardState) {                                        
 }
 
 function showVictory() {
-    document.getElementById('victoryOverlay').style.display = 'block';
+    document.getElementById("victoryOverlay").classList.remove("hidden");
     freezeBoard();
 }
-
 function closeVictoryAndFreeze() {
-    document.getElementById('victoryOverlay').style.display = 'none';
+    document.getElementById("victoryOverlay").classList.add("hidden");
 }
 
 function freezeBoard() {
@@ -107,7 +106,7 @@ function resetBoard() {
     if (!currentWords.length) return;
 
     // hide overlay if it’s showing
-    document.getElementById("victoryOverlay").style.display = "none";
+    document.getElementById("victoryOverlay").classList.add("hidden");
     boardFrozen = false;                         // let cells be clickable again
 
     generateBingoBoard(
@@ -119,14 +118,9 @@ function resetBoard() {
 }
 
 function newBoard() {
-    document.getElementById('victoryOverlay').style.display = 'none';
+    document.getElementById("victoryOverlay").classList.add("hidden");
     if (!currentWords.length) return;
     generateBingoBoard(currentWords, currentSize, currentBonus);   // generateBingoBoard reshuffles internally
-}
-
-function freezeBoard() {
-    boardFrozen = true;
-    document.querySelectorAll("#bingoBoard td").forEach(td => td.onclick = null);
 }
 
 if (typeof window !== "undefined") {

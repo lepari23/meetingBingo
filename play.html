@@ -1,27 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Play MeetingBingo</title>
-    <link rel="icon" type="image/png" href="images/favicon.png">
-    <link rel="stylesheet" href="css/style.css">
+  <meta charset="UTF-8">
+  <title>Play MeetingBingo</title>
+  <link rel="icon" type="image/png" href="images/favicon.png">
+  <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <h1>Buzzword Bingo</h1>
+  <main class="play-wrapper">
+    <h1 id="pageTitle">Buzzword Bingo</h1>
+
     <div id="bingoBoard"></div>
-    <div id="victoryOverlay" class="hidden">
-        <img src="images/victory.gif" alt="Victory!" id="victoryGif">
-        <h2>Wow! You got Bingo and all your life's problems remain unchanged!</h2>
-        <button onclick="closeVictoryAndFreeze()">A win is a win, give me proof!</button>
-        <button onclick="newBoard()">I've accepted this is my life, let's play again</button>
-        <button onclick="window.location.href='index.html'">Back to Main menu</button>
+
+    <div class="play-controls">
+      <button class="action-btn" onclick="resetBoard()">Reset Board</button>
+      <button class="action-btn" onclick="newBoard()">New Board</button>
+      <button class="action-btn" onclick="location.href='index.html'">Back Home</button>
     </div>
+  </main>
 
-    <button onclick="resetBoard()">Reset Board</button>
-    <button onclick="newBoard()">New Board</button>
-    <button onclick="window.location.href='index.html'">Back to Home</button>
+  <!-- win overlay -->
+  <div id="victoryOverlay" class="hidden">
+      <img src="images/victory.gif" alt="Victory!">
+      <h2>Wow! You got Bingo and all your life's problems remain unchanged!</h2>
+      <button class="action-btn" onclick="closeVictoryAndFreeze()">A win is a win — give me proof!</button>
+      <button class="action-btn" onclick="newBoard()">I've accepted my fate — play again</button>
+      <button class="action-btn" onclick="location.href='index.html'">Back to menu</button>
+  </div>
 
-    <script src="js/bingo.js"></script>
-    <script src="js/play.js"></script>
+  <footer>
+    <p class="wisdom">The identity of Bingo is formally ambiguous, and it is occasionally suggested that it is the name of the farmer.</p>
+  </footer>
+
+  <script src="js/presetLists.js"></script>
+  <script src="js/play.js"></script>
 </body>
 </html>

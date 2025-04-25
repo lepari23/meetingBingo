@@ -1,32 +1,56 @@
-<link rel="icon" type="image/png" href="images/favicon.png">
-<h1>Create or Edit a Word List</h1>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Create / Edit Word Lists – Buzzword Bingo</title>
+  <link rel="icon" type="image/png" href="images/favicon.png">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <main class="create-wrapper">
+    <h1>Create or Edit a Word List</h1>
 
-<input type="text" id="newListName" placeholder="List Name">
-<br>
-<br>
-<input type="text" id="wordInput" placeholder="Enter Word or Phrase">
-<button onclick="addWord()">Add Word</button>
-<ul id="wordList"></ul>
+    <input type="text" id="newListName" placeholder="List name" style="width:100%;max-width:280px;">
 
-<button onclick="saveNewList()">Save List</button>
-<button onclick="clearInputs()">Clear Current Inputs</button>
-<br>
-<h3>Import / Export custom lists</h3>
+    <div class="create-columns">
 
-<!-- Download selector -->
-<select id="downloadSelect">
-  <option value="" disabled selected>Select custom list to download</option>
-</select>
-<button onclick="downloadList()">Download JSON</button>
-<br><br>
+      <div>
+        <input type="text" id="wordInput" placeholder="Enter word or phrase" style="width:100%;">
+        <button class="action-btn wordlist-btn" onclick="addWord()">Add Word</button>
 
-<!-- Upload -->
-<input type="file" id="uploadFile" accept=".json" style="display:none">
-<button onclick="document.getElementById('uploadFile').click()">Upload JSON</button>
-<hr>
-<h2>Saved Lists</h2>
-<div id="savedLists"></div>
-<br>
-<button onclick="window.location.href='index.html'">Back to Main Menu</button>
+        <ul id="wordList"></ul>
 
-<script src="js/create.js"></script>
+        <button class="action-btn" onclick="saveNewList()">Save List</button>
+        <br><br>
+        <button class="action-btn" onclick="clearInputs()">Clear Inputs</button>
+
+        <hr>
+
+        <h3>Import / Export custom lists</h3>
+
+        <select id="downloadSelect">
+          <option value="" disabled selected>Select list to download</option>
+        </select>
+        <br><br>
+        <button class="action-btn" onclick="downloadList()">Download JSON</button><br><br>
+        <input type="file" id="uploadFile" accept=".json" hidden>
+        <button class="action-btn" onclick="document.getElementById('uploadFile').click()">Upload JSON</button>
+      </div>
+
+      <div class="saved-box">
+        <h3>Saved Lists</h3>
+        <div id="savedLists"></div>
+      </div>
+
+    </div>
+
+    <button class="action-btn" onclick="location.href='index.html'">Back to menu</button>
+  </main>
+
+  <footer>
+    <p class="wisdom">The identity of Bingo is formally ambiguous, and it is occasionally suggested that it is the name of the farmer.</p>
+  </footer>
+
+  <script src="js/create.js"></script>
+</body>
+</html>

@@ -1,47 +1,82 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Buzzword Bingo</title>
-    <link rel="icon" type="image/png" href="images/favicon.png">
-    <link rel="stylesheet" href="css/style.css">
+  <meta charset="UTF-8">
+  <title>Buzzword Bingo</title>
+  <link rel="icon" type="image/png" href="images/favicon.png">
+  <link rel="stylesheet" href="css/style.css">
 </head>
-<!-- well hello there! what brings you to my source? -->
+
 <body>
-    <h1>Welcome to Buzzword Bingo</h1>
-    <br>
-    <button onclick="window.location.href='create.html'">Manage your Custom Word Lists</button>
-    <h2>Play a Game</h2>
-    <p>Select board size:</p>
-    <select id="boardSize">
-      <option value="3" selected>3×3 (default)</option>
-      <option value="4">4x4</option>
-      <option value="5">5x5</option>
-      <option value="6">6x6</option>
-      <option value="7">7x7</option>
-    </select>
-    <br>
-    <div id="bonusWrapper" style="display: none;">
-      <input type="checkbox" id="bonusSquare" name="bonusSquare" value="false">
-      <label for="bonusSquare">Include Bonus Square</label>
+  <div id="disclaimerModal" class="modal">
+    <div class="modal-box">
+      <h2>One Quick Thing…</h2>
+      <p>
+        This application is a light-hearted side project. Use it at your own
+        discretion. The author is not liable for awkward stares, HR e-mails,
+        disciplinary hearings, damages or existential crises that may arise
+        while playing.
+      </p>
+      <div class="btn-row">
+        <button id="declineBtn" class="flat-btn">No thanks</button>
+        <button id="acceptBtn"  class="flat-btn primary">I accept</button>
+      </div>
     </div>
-    <br>
-    <div id="customListButtons"></div>
-    <button onclick="startGame('tech')">Tech Bingo</button>
-    <br><br>
-    <button onclick="startGame('management')">Management Bingo</button>
-    <br><br>
-    <button onclick="startGame('marketing')">Marketing Bingo</button>
-    <br><br>
-    <button onclick="startGame('wine')">Wine Tasting Bingo</button>
-    <br><br>
-    <script src="js/bingo.js"></script>
-    <script src="js/storage.js"></script>
-    <script src="js/index.js"></script>
+  </div>
+
+  <main>
+    <h1>Welcome to Buzzword Bingo</h1>
+
+    <button class="action-btn" onclick="location.href='create.html'">
+      Manage Custom Word Lists
+    </button>
+
+    <!-- play card ------------------------------------------------------- -->
+    <section class="play-card">
+      <h2>Play a Game</h2>
+
+      <label for="boardSize">Board&nbsp;size:</label><br>
+      <select id="boardSize">
+        <option value="3" selected>3 x 3 (default)</option>
+        <option value="4">4 x 4</option>
+        <option value="5">5 x 5</option>
+        <option value="6">6 x 6</option>
+        <option value="7">7 x 7</option>
+      </select>
+
+      <div id="bonusWrapper" class="bonus-wrap">
+        <input type="checkbox" id="bonusSquare">
+        <label for="bonusSquare">Include Bonus Square</label>
+      </div>
+
+      <div class="btn-grid" id="presetButtons"></div>
+
+      <div id="customListButtons" class="btn-grid"></div>
+    </section>
+
+    <details id="howItWorks">
+      <summary>How does this work?</summary>
+      <ul>
+        <li><strong>Pick a list.</strong> Built-ins + your own.</li>
+        <li><strong>Select a board size</strong> (3x3 - 7x7). Too few words? Size is refused.</li>
+        <li><strong>Bonus square</strong> = centre “FREE” space on odd boards.</li>
+        <li><strong>Click words</strong> as they're said to strike them.</li>
+        <li>Complete a row, column, or diagonal → <em>Bingo!</em></li>
+        <li><strong>Reset</strong> keeps the layout, <strong>New Board</strong> reshuffles.</li>
+        <li><strong>Freeze</strong> locks a winning board so you can show proof.</li>
+        <li>Custom lists live only in <code>localStorage</code>. Export JSON to share.</li>
+        <li><strong>Disclaimer:</strong> It's just for fun; play at your own risk.</li>
+      </ul>
+    </details>
+  </main>
+
   <footer>
     <p class="wisdom">
       The identity of Bingo is formally ambiguous, and it is occasionally suggested that it is the name of the farmer.
     </p>
   </footer>
+
+  <script src="js/presetLists.js"></script>
+  <script src="js/index.js"></script>
 </body>
 </html>
