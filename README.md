@@ -12,7 +12,7 @@ No servers, no tracking — everything runs 100% client-side.
 ## Quick start (dev)
 
 ```bash
-git clone https://github.com/lepari23/meetingbingo.git
+git clone https://github.com/lepari23/meetingBingo.git
 cd meetingbingo
 python3 -m http.server 5500
 ```
