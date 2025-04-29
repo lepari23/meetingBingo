@@ -35,7 +35,7 @@ const presetLists = {
         "grassroots", "get our ducks in a row", "trim the fat", "jump the shark", "herding cats",
         "employee experience", "what's best for the company", "think practically", "be mature", "think pragmatically",
         "accommodating", "find alternatives", "drill down", "streamline", "value-add",
-        "high-priority", "work hard, play hard", "greener grass", "corporate"
+        "high-priority", "work hard, play hard", "greener grass", "corporate", "HR"
     ],
     marketing: [
         "AI marketing", "SEO", "content strategy", "viral", "ROI",
