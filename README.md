@@ -6,7 +6,7 @@ No servers, no tracking — everything runs 100% client-side.
 
 ## Live demo
 
-**<https://lepari23.github.io/meetingbingo>**
+**<https://lepari23.github.io/meetingBingo>**
 
 
 ## Quick start (dev)
